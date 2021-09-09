@@ -28,18 +28,18 @@ public class DaoCadastroTeste {
 		
 	
 		Cadastro cadastro = new Cadastro();
-						cadastro.setTitulo("teste");
-						cadastro.setDescricao("asasa ");
-						cadastro.setResponsavel("xxxx");
-						cadastro.setPrioridade("zzzzz");
-						cadastro.setSituacao("weqwqw");
+				 cadastro.setTitulo("teste");
+		   		 cadastro.setDescricao("testando ");
+				 cadastro.setResponsavel("Roberto");
+				 cadastro.setPrioridade("Altal");
+				 cadastro.setSituacao("Em andamento");
 						
-						Date date = new SimpleDateFormat("dd/MM/yyyy").parse("12/12/2012");
-						Calendar calendar = Calendar.getInstance();
-						calendar.setTime(date);
+				 Date date = new SimpleDateFormat("dd/MM/yyyy").parse("12/12/2012");
+				 Calendar calendar = Calendar.getInstance();
+				 calendar.setTime(date);
 						
 				
-						cadastro.setDeadline(calendar);
+				 cadastro.setDeadline(calendar);
 				
 				
 		

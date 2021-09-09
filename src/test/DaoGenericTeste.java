@@ -23,18 +23,18 @@ public class DaoGenericTeste {
 		CadastroDao cadastroDao = new CadastroDao();
 		
 		Cadastro cadastro =  new Cadastro();
-			cadastro.setTitulo("teste");
-			cadastro.setDescricao("asasa ");
-			cadastro.setResponsavel("xxxx");
-			cadastro.setPrioridade("zzzzz");
-			cadastro.setSituacao("teste");
-			
-			Date date = new SimpleDateFormat("dd/MM/yyyy").parse("12/12/2012");
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date);
+				 cadastro.setTitulo("teste1");
+				 cadastro.setDescricao("teste1 ");
+				 cadastro.setResponsavel("Roberval");
+				 cadastro.setPrioridade("Media");
+				 cadastro.setSituacao("Concluida");
+				
+				 Date date = new SimpleDateFormat("dd/MM/yyyy").parse("12/12/2012");
+				 Calendar calendar = Calendar.getInstance();
+				 calendar.setTime(date);
 			
 	
-			cadastro.setDeadline(calendar);
+			     cadastro.setDeadline(calendar);
 			
 		cadastroDao.criaCadastro(cadastro);
 		

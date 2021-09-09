@@ -3,6 +3,7 @@ package model;
 import java.util.Calendar;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,10 @@ public class Cadastro  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	private String titulo;
+	
+	@Column(columnDefinition = "TEXT")
     private String descricao;
+	
     private String responsavel;
     private String prioridade;
     private String situacao;
