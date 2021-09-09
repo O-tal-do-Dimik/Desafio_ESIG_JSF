@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Esig</title>
+	<meta charset="utf-8" />
+
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</h:head>
+
+
+<h:body>
+ 	<h:form >
+		<fieldset>
+		
+			<legend>Cadastrar Tarefa</legend>
+ 				<h:panelGrid columns="2">
+				
+ 					<h:outputLabel value="Título:" for="titulo"/>
+ 					<h:inputText id="titulo" value = "#{cadastroBeans.cadastro.titulo}"
+ 											 required="true"
+ 											 />
+ 					<!--  --><h:message for="titulo" id="messageTitulo"/> 
+ 					
+  					<h:outputLabel value="descricao" for="descricao"/>
+ 					<h:inputTextarea id="descricao" value = "#{cadastroBeans.cadastro.descricao}"
+ 													required="true"/>	
+ 					<!--  --><h:message for="descricao" id="messageDescricao"/> 
+ 						
+					<h:outputLabel value="Responsavel" for="responsavel"/>
+					<h:selectOneMenu id="responsavel" value = "#{cadastroBeans.cadastro.responsavel}">
+						<f:selectItem itemValue = "Dimitrio" itemLabel = "Dimitrio" /> 
+   						<f:selectItem itemValue = "Patricia" itemLabel = "Patricia" />
+					</h:selectOneMenu>	
+					 
+					
+ 					<h:outputLabel value="Prioridade" for="prioridade"/>
+					<h:selectOneMenu id="prioridade" value = "#{cadastroBeans.cadastro.prioridade}">
+						<f:selectItem itemValue = "Alta" itemLabel = "Alta" /> 
+   						<f:selectItem itemValue = "Media" itemLabel = "Media" />
+   						<f:selectItem itemValue = "Baixa" itemLabel = "Baixa" />
+					</h:selectOneMenu>	
+					
+					
+					<h:outputLabel value="Deadline:" for="deadline"/>
+ 					<h:inputText id="deadline"
+ 								 value="#{cadastroBeans.cadastro.deadline.time}"
+ 								 required="true">
+ 						<f:convertDateTime pattern="dd/MM/yyyy" timezone="America/Sao_Paulo"/>			 
+ 					</h:inputText>
+ 					
+ 					
+					<h:commandButton value = "Cadastrar" action="#{cadastroBeans.salvar}"/>			
+				</h:panelGrid>
+		</fieldset>	
+ 	</h:form>
+ 	
+	<h:form id="form_busca">
+			<fieldset>
+			
+				<legend>Buscar Tarefa</legend>
+					<h:panelGrid columns="2">
+						
+ 						<h:outputLabel value="Número:" for="id"/>
+	 					<h:inputText id="id" value = "#{cadastroBeans.cadastroBusca.id}"/>
+					
+						<h:outputLabel value="Titulo:" for="titulo"/>
+	 					<h:inputText id="titulo"
+	 								 value = "#{cadastroBeans.cadastroBusca.titulo}"
+	 								 	/>
+	 					
+	 					<h:outputLabel value="Descrição" for="descricao"/>
+	 					<h:inputTextarea id="descricao" value = "#{cadastroBeans.cadastroBusca.descricao}"/>	
+	 						
+						<h:outputLabel value="Responsavel" for="responsavel"/>
+						<h:selectOneMenu id="responsavel" value = "#{cadastroBeans.cadastroBusca.responsavel}">
+							<f:selectItem itemValue = "" itemLabel = "Selecione" /> 
+							<f:selectItem itemValue = "Dimitrio" itemLabel = "Dimitrio" /> 
+	   						<f:selectItem itemValue = "Patricia" itemLabel = "Patricia" />
+						</h:selectOneMenu>	
+						
+						
+						<h:outputLabel value="Situação" for="situacao"/>
+						<h:selectOneMenu id="situacao" value = "#{cadastroBeans.cadastroBusca.situacao}">
+							<f:selectItem itemValue = "" itemLabel = "Selecione" />
+							<f:selectItem itemValue = "Em andamento" itemLabel = "Em andamento" /> 
+	   						<f:selectItem itemValue = "Concluida" itemLabel = "Concluida" />   						
+						</h:selectOneMenu>	
+									
+						<h:commandButton value = "Buscar Tarefa" 
+										action="#{cadastroBeans.getListaCadastro}"/>		
+						
+				</h:panelGrid>
+			</fieldset>	
+	</h:form>
+	
+	
+	<h:form>
+		<legend>Lista de Tarefas</legend>
+		<table class='table'></table>				
+		<h:dataTable id="tabelaSkills" value="#{cadastroBeans.listaCadastro}" var="cadastro">
+		
+			<h:column>
+				<f:facet name="header">Numero</f:facet>
+				<h:outputText value="#{cadastro.id}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Titulo</f:facet>
+				<h:outputText value="#{cadastro.titulo}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Responsavel</f:facet>
+				<h:outputText value="#{cadastro.responsavel}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Situação</f:facet>
+				<h:outputText value="#{cadastro.situacao}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Alterar</f:facet>
+				<h:commandLink value="alterar" action="#{cadastroBeans.carregaCadastro(cadastro)}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Remover</f:facet>
+				<h:commandLink value="remover" action="#{cadastroBeans.deletar(cadastro, cadastro.id)}"/>					
+			</h:column>
+			<h:column>
+				<f:facet name="header">Concluir</f:facet>
+				<h:commandLink value="concluir" action="#{cadastroBeans.concluir(cadastro, cadastro.id)}"/>					
+			</h:column> 
+			 						
+			
+ 		</h:dataTable>
+	</h:form> 
+	
+	
+</h:body>
+</html>	
